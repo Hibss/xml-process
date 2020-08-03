@@ -1,0 +1,32 @@
+server:
+  port: 8083
+file:
+  path: E:\\xmlTest
+spring:
+  application:
+    name: xmlProcessServer
+  jackson:
+    time-zone: GMT+8
+  datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      hikari:
+        username: root
+        password: sheng1988
+        jdbc-url: jdbc:mysql://localhost:3306/world?autoReconnect=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8
+        minimum-idle: 5
+        maximum-pool-size: 15
+        auto-commit: true
+        idle-timeout: 30002
+        pool-name: hikariCP
+        max-lifetime: 500000
+        connection-timeout: 30001
+        connection-test-query: SELECT 1
+        validation-timeout: 5000
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.syz.xml.process.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    cache-enabled: false
