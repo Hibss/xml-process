@@ -139,8 +139,6 @@ public class SAX2BeanUtil extends DefaultHandler {
             processInfoMap(fields);
             classInit = false;
         }else{
-            SimpleTypeConverter typeConverter = new SimpleTypeConverter();
-            typeConverter.useConfigValueEditors();
             infoMap.put(currentField,typeConverter.convertIfNecessary(value, typeMap.get(currentField)));
         }
     }
@@ -170,8 +168,6 @@ public class SAX2BeanUtil extends DefaultHandler {
 //        typeConverter.useConfigValueEditors();
 //        Type type = Integer.TYPE;
 //        System.out.println(typeConverter.convertIfNecessary("123", type.getClass()));
-
-
     }
 
     public Object bean2Map(Class bean){
