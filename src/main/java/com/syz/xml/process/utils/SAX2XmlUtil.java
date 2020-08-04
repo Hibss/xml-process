@@ -26,7 +26,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 @Slf4j
-public class SAXUtil extends DefaultHandler {
+public class SAX2XmlUtil extends DefaultHandler {
+    
+    private final static String ROOT = "root";
 
     public static void createSAX(String filePath,List<?> list) throws Exception {
         try {
@@ -49,7 +51,17 @@ public class SAXUtil extends DefaultHandler {
             //根节点，添加换行，强行换行
             String returnS = "\n";
             handler.characters(returnS.toCharArray(),0,returnS.length());
-            handler.startElement("", "", beanName + "List", attr);
+
+            //开始转xml
+            handler.startElement("", "", ROOT, attr);
+
+            //设置类名
+            String fullName = list.get(0).getClass().getName();
+            handler.startElement("", "", "class", attr);
+            handler.characters(fullName.toCharArray(),0,fullName.length());
+            handler.endElement("", "", "class");
+
+
             Field[] fields = list.get(0).getClass().getDeclaredFields();
             Object o;
             String value ;
@@ -75,7 +87,7 @@ public class SAXUtil extends DefaultHandler {
                 handler.characters(four.toCharArray(),0,four.length());
                 handler.endElement("", "", beanName );
             }
-            handler.endElement("", "", beanName + "List");
+            handler.endElement("", "", ROOT);
             // 关闭doc对象
             handler.endDocument();
             System.out.println("SAX CreateSAX success!");
@@ -217,7 +229,7 @@ public class SAXUtil extends DefaultHandler {
     }
 
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
-        SAXUtil util = new SAXUtil();
+        SAX2XmlUtil util = new SAX2XmlUtil();
         File inputFile = new File("E:\\xmlTest\\a.xml");
 
         // 创建一个SAX解析工厂

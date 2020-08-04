@@ -35,6 +35,25 @@ public class FieldUtil {
         return null;
     }
 
+    public static String getName(Field field){
+            // 如果类型是String
+            String fieldType = field.getGenericType().toString();
+            if (fieldType.equals("class java.lang.String") ||
+                    fieldType.equals("class java.lang.Integer") ||
+                    fieldType.equals("class java.lang.Double") ||
+                    fieldType.equals("class java.lang.Boolean") ||
+                    fieldType.equals("class java.lang.Date") ||
+                    fieldType.equals("class java.lang.Short") ||
+                    fieldType.equals("class java.lang.Long") ||
+                    fieldType.equals("class java.lang.BigDecimal")
+                    ) {
+                return field.getName();
+//                String fieldName = field.getName();
+//                return fieldName.substring(0,1).toLowerCase().concat(fieldName.substring(1));
+            }
+        return null;
+    }
+
     // 把一个字符串的第一个字母大写、效率是最高的、
     private static String getMethodName(String fieldName) throws Exception {
         return fieldName.substring(0,1).toUpperCase().concat(fieldName.substring(1));

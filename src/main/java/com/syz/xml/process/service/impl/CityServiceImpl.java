@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.syz.xml.process.entity.City;
 import com.syz.xml.process.mapper.CityMapper;
 import com.syz.xml.process.service.CityService;
-import com.syz.xml.process.utils.SAXUtil;
+import com.syz.xml.process.utils.SAX2XmlUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +43,7 @@ public class CityServiceImpl extends ServiceImpl<CityMapper, City> implements Ci
             log.info("无城市列表");
             return;
         }
-        SAXUtil.createSAX(path,cityList);
+        SAX2XmlUtil.createSAX(path,cityList);
 
     }
 }
