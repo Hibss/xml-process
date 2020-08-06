@@ -26,7 +26,13 @@
     <aop:config>
         <!--<aop:pointcut id="allManagerMethod" expression="execution(* com.czkj.customer.service.festival.service.*.*.*(..)) and-->
             <!--execution(* com.czkj.customer.service.festival.async.*.*(..))" />-->
-        <aop:pointcut id="allManagerMethod" expression="execution(* com.syz.xml.process.service.*.*.*(..))" />
+
+        <!--
+        定义在service包和所有子包里的任意类的任意方法的执行：
+        execution(* com.syz.xml.process.service..*.*(..))
+
+        -->
+        <aop:pointcut id="allManagerMethod" expression="execution(* com.syz.xml.process.service.*.*.*(..)) and execution(* com.syz.xml.process.async.*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="allManagerMethod" order="0"/>
     </aop:config>
 

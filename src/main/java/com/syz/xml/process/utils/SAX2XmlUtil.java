@@ -61,7 +61,6 @@ public class SAX2XmlUtil extends DefaultHandler {
             handler.characters(fullName.toCharArray(),0,fullName.length());
             handler.endElement("", "", "class");
 
-
             Field[] fields = list.get(0).getClass().getDeclaredFields();
             Object o;
             String value ;

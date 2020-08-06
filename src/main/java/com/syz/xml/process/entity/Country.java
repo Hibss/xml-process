@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -16,9 +20,9 @@ import java.io.Serializable;
  * @author steven.sheng
  * @since 2020-08-03
  */
-@AllArgsConstructor
-@NoArgsConstructor
+@XmlAccessorType(value = XmlAccessType.FIELD)
 @Data
+@XmlRootElement(name="countryBean")
 public class Country implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,21 +31,27 @@ public class Country implements Serializable {
     private String Code;
 
     @TableField("Name")
+    
     private String Name;
 
     @TableField("Continent")
+    
     private String Continent;
 
     @TableField("Region")
+    
     private String Region;
 
     @TableField("SurfaceArea")
+    
     private Float SurfaceArea;
 
     @TableField("IndepYear")
+    
     private Integer IndepYear;
 
     @TableField("Population")
+    
     private Integer Population;
 
     @TableField("LifeExpectancy")
@@ -53,17 +63,22 @@ public class Country implements Serializable {
     private Float GNPOld;
 
     @TableField("LocalName")
+    
     private String LocalName;
 
     @TableField("GovernmentForm")
+    
     private String GovernmentForm;
 
     @TableField("HeadOfState")
+    
     private String HeadOfState;
 
     @TableField("Capital")
+    
     private Integer Capital;
 
     @TableField("Code2")
+    
     private String Code2;
 }
