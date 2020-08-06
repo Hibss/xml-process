@@ -25,11 +25,13 @@ public class JDOM2BeanUtil {
 
     public static void main(String[] args) {
 //        JDOM2BeanUtil.read("E:\\xmlTest\\City1596695276384.xml");
-        JDOM2BeanUtil.parse("E:\\xmlTest\\City1596695696619.xml");
+
+        List parse = JDOM2BeanUtil.parse("E:\\xmlTest\\City1596695696619.xml");
+        System.out.println(JSON.toJSON(parse));
 //        ;City1596695696619.xml
     }
 
-    private static void parse(String file) {
+    private static List parse(String file) {
         try {
             List res = new ArrayList();
             typeConverter = new SimpleTypeConverter();
@@ -40,7 +42,7 @@ public class JDOM2BeanUtil {
             Document doc = builder.build(new File(file));
             /* 打印xml信息 */
             parse(doc.getContent(), res);
-            System.out.println(JSON.toJSON(res));
+            return res;
         } catch (JDOMException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -52,6 +54,7 @@ public class JDOM2BeanUtil {
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     private static void processInfoMap(Field[] fields) {
