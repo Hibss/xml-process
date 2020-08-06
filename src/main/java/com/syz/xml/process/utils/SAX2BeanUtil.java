@@ -117,7 +117,14 @@ public class SAX2BeanUtil extends DefaultHandler {
             }
 //            map2Bean(infoMap, o);
             data.add(o);
+            clearValue(infoMap);
         }
+    }
+
+    private void clearValue(Map<String, Object> infoMap) {
+        infoMap.entrySet().iterator().forEachRemaining(a->{
+            a.setValue(null);
+        });
     }
 
 
@@ -157,7 +164,7 @@ public class SAX2BeanUtil extends DefaultHandler {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(SAX2BeanUtil.getList("E:\\xmlTest\\City1596520231226.xml"));
+        System.out.println(SAX2BeanUtil.getList("E:\\xmlTest\\City1596692949817.xml"));
 //        Map<String,String> map = new HashMap<>();
 //        map.put("countryCode","123");
 //        Class bean = SAX2BeanUtil.getClass("com.syz.xml.process.entity.City");

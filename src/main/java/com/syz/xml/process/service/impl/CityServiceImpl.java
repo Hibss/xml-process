@@ -1,8 +1,11 @@
 package com.syz.xml.process.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.syz.xml.process.entity.City;
+import com.syz.xml.process.entity.Country;
 import com.syz.xml.process.mapper.CityMapper;
 import com.syz.xml.process.service.CityService;
 import com.syz.xml.process.utils.SAX2XmlUtil;
@@ -38,9 +41,12 @@ public class CityServiceImpl extends ServiceImpl<CityMapper, City> implements Ci
     @Override
     public void createXml() throws Exception {
         String path = filePath + File.separator + City.class.getSimpleName()+System.currentTimeMillis() + ".xml";
+        Integer pageIndex = 1 , pageSize =10;
         QueryWrapper<City> queryWrapper = new QueryWrapper<>();
+        IPage page = new Page<>(pageIndex, pageSize);
         queryWrapper.eq("countryCode","CHN");
-        List<City> cityList = cityMapper.selectList(queryWrapper);
+        IPage selectPage = cityMapper.selectPage(page,queryWrapper);
+        List<City> cityList = selectPage.getRecords();
         if(CollectionUtils.isEmpty(cityList)){
             log.info("无城市列表");
             return;
