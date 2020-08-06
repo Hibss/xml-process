@@ -5,10 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.syz.xml.process.entity.City;
-import com.syz.xml.process.entity.Country;
 import com.syz.xml.process.mapper.CityMapper;
 import com.syz.xml.process.service.CityService;
-import com.syz.xml.process.utils.SAX2XmlUtil;
+import com.syz.xml.process.utils.JDOM2XmlUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,6 +50,10 @@ public class CityServiceImpl extends ServiceImpl<CityMapper, City> implements Ci
             log.info("无城市列表");
             return;
         }
-        SAX2XmlUtil.createSAX(path,cityList);
+        //1.sax
+//        SAX2XmlUtil.createSAX(path,cityList);
+
+        //2.JDOM
+        JDOM2XmlUtil.list2Xml(cityList,path);
     }
 }
